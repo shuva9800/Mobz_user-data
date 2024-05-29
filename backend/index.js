@@ -22,8 +22,5 @@ app.listen(port, ()=>{
 app.use("/api/v1", route);
 
 app.get('/',(req,res)=>{
-    return res.status(200).json({
-        success:false,
-        message:"wellcome to homepage"
-    })
+    res.send(`<h1>successfully exicuted default route ,home page</h1>`)
 })
