@@ -27,7 +27,7 @@ export default function Alldata() {
     );
     console.log("use state data",userData);
   return (
-    <div>
+    <div className='flex items-center flex-col py-4 gap-4'>
          <h2>USER DETAILS IS HERE</h2>
         {
             
