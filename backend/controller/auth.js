@@ -2,6 +2,8 @@ const User = require("../model/user");
 const phNumbervalidation = require("../utils/validmobno");
 const emailValidation = require("../utils/emailvalidation");
 const passwordvalidation = require("../utils/passvalidation");
+const loginIdvalidation = require("../utils/validloginid");
+const stringCheck = require("../utils/stringvalidation")
 
 exports.createUser = async (req,res) =>{
     console.log(req.body);
@@ -14,6 +16,20 @@ exports.createUser = async (req,res) =>{
                     message:" all filled are required"
                 })
             }
+        //name string validation cheeck
+        if(!stringCheck(firstName)){
+            return res.status(400).json({
+                success: false,
+                message:"First name is taking string value not number"
+            })
+        }
+        if(!stringCheck(lastName)){
+            return res.status(400).json({
+                success: false,
+                message:"Lastst name is taking string value not number"
+            })
+        }
+
             //phone number validation
         if(!phNumbervalidation(mobileNo)){
             return res.status(400).json({
@@ -28,12 +44,34 @@ exports.createUser = async (req,res) =>{
                 message:"Enter a valid Email"
             })
         }
+        //state and country validation
+        if(!stringCheck(state)){
+            return res.status(400).json({
+                success: false,
+                message:"State  is taking string value not number"
+            })
+        }
+
+        if(!stringCheck(country)){
+            return res.status(400).json({
+                success: false,
+                message:"Country  is taking string value not number"
+            })
+        }
+        
+        //loginId validation
+        if(!loginIdvalidation(loginId)){
+            return res.status(400).json({
+                success: false,
+                message:"Enter a valid Login use 8 characters alppha numeric"
+            })
+        }
 
         //password validation
         if(!passwordvalidation(password)){
             return res.status(400).json({
                 success:false,
-                message:"password validation faleld check the requirement"
+                message:"password validation faleld follow instraction 6 characters, 1 upper case letter, 1 lower case letter, 1 special character"
             })
 
         }

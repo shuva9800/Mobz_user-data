@@ -9,12 +9,9 @@ const port= process.env.PORT ||4000;
 
 //body parser 
 app.use(express.json());
-app.use(
-	cors({
-		origin:"https://userdata-mern-project.vercel.app",
-		credentials:true,
-	})
-)
+app.use(cors());
+
+  
 
 //dbconnect
 dbconnect();
